@@ -14,7 +14,7 @@ model Projects {
   id          String @id @default(uuid())
   name        String
   email       String @unique
-  phone       Int
+  phone       String
   service     String
   projectName String
   Information String
@@ -24,7 +24,7 @@ model JoinUs {
   id      String @id @default(uuid())
   name    String
   email   String @unique
-  phone   Int
+  phone   String
   major   String
   message String
 }

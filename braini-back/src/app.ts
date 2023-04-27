@@ -1,16 +1,15 @@
-import express, { Application} from "express";
+import express from 'express'
+import dotenv from 'dotenv'
+import router from './routes/router'
 
-import { connectDB } from "./config/db";
-
-
-
-
-const app: Application = express();
-app.use(express.json());
-let port: number = 3005;
-connectDB()
+const app = express()
+dotenv.config()
+app.use(express.json())
+app.use(router)
 
 
+const port = process.env.PORT || 3000
 
-
-app.listen(port, () => console.log(`express server listening on port ${port}`));
+app.listen(port, ()=>{
+    console.log(`Server's running on: ${port}`);    
+})

@@ -24,34 +24,34 @@ import { RiFlashlightFill } from "react-icons/ri";
 
 const navLinks = [
   { name: " الرئيسيه", path: "/" },
-  { name: "تواصل معنا", path: "#" },
-  { name: "من نحن", path: "#" },
+  { name: "تواصل معنا", path: "/contactus" },
+  { name: "من نحن", path: "/aboutus" },
 ];
 
 const dropdownLinks = [
   {
     name: "تطوير الرمجيات",
-    path: "/card1",
+    path: "",
   },
   {
     name: "معالجة البيانات وادخالها",
-    path: "/card2",
+    path: "",
   },
   {
     name: "الذكاء الاصطناعي",
-    path: "/card3",
+    path: "",
   },
   {
     name: "الأمن السيبراني",
-    path: "/card4",
+    path: "",
   },
   {
     name: "استشارات  تقنية",
-    path: "/card5",
+    path: "",
   },
   {
     name: "خدمات تقنية",
-    path: "/card6",
+    path: "",
   },
 ];
 
@@ -120,11 +120,15 @@ export default function Navbar() {
         </HStack>
 
         <Button
-          bg="#f89d1d"
+      bg="#f89d1d"
+      color="white"
+      _hover={{
+        bg: "#f8a633",
+      }}
           size="md"
           rounded="md"
           display={{ base: "none", md: "block" }}
-          color={"white"}
+        
         >
           <Link href="/form2">انضم معنا</Link>
         </Button>
@@ -141,13 +145,18 @@ export default function Navbar() {
       {/* Mobile Screen Links */}
       {isOpen ? (
         <Box pb={4} display={{ base: "inherit", md: "none" }}>
-          <Stack as="nav" spacing={2}>
+          
+          <Stack as="nav" spacing={2}color="white">
+          
             {navLinks.map((link, index) => (
               <NavLink key={index} {...link} onClose={onClose} />
             ))}
-            <Link fontWeight="semibold" color="white">
-              Community
+            
+            <Link fontWeight="semibold" color="white"  href="/form2">
+              انضم معنا
             </Link>
+
+            <Text>خدماتنا :</Text>
             <Stack pl={2} spacing={1} mt={"0 !important"}>
               {dropdownLinks.map((link, index) => (
                 <NavLink key={index} {...link} onClose={onClose} />

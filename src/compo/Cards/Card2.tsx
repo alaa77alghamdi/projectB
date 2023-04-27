@@ -49,7 +49,6 @@ export default function Card2(){
             color="gray.700"
             _dark={{ color: "gray.200" }}
           >
-            Software Engineer
           </chakra.span>
         </Box>
       </Box>
