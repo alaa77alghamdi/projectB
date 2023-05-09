@@ -28,3 +28,13 @@ model JoinUs {
   major   String
   message String
 }
+
+
+model ContactUs{
+id String @id @default(uuid())
+name String
+email String @unique
+phone String
+message String
+
+}

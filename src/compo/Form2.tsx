@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import {
   Container,
   FormControl,
@@ -12,14 +12,10 @@ import {
   VStack,
   Flex,
   Text,
-  Icon,
-  Divider,
+
 } from "@chakra-ui/react";
-// Here we have used react-icons package for the icons
-import { GoLocation } from "react-icons/go";
-import { BsPhone } from "react-icons/bs";
-import { HiOutlineMail } from "react-icons/hi";
-import axios from "axios";
+
+// import axios from "axios";
 
 const From2 = () => {
   const [email, setEmail] = useState("");
@@ -27,20 +23,58 @@ const From2 = () => {
   const [phone, setPhone] = useState("");
   const [major, setMajor] = useState("");
   const [message, setMessage] = useState("");
-  const sendEmail = async (e: any) => {
-    e.preventDefualt();
-    const data = {
+  const [submitted, setSubmitted] = useState(false);
+
+ 
+ 
+ 
+  
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("Sending");
+    let data = {
       name,
       email,
       phone,
-      major,
       message,
+      major
     };
-
-    const response = await axios.post("http://localhost:3003/sendForm", data);
-
-    console.log(response.data);
+    await fetch("http://localhost:3003/sendForm", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      console.log("Response received");
+      if (res.status === 200) {
+        console.log("Response succeeded!");
+        setSubmitted(true);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+      }
+    });
   };
+ 
+ 
+ 
+ 
+  // const sendEmail = async (e: any) => {
+  //   e.preventDefualt();
+  //   const data = {
+  //     name,
+  //     email,
+  //     phone,
+  //     major,
+  //     message,
+  //   };
+
+  //   const response = await axios.post("http://localhost:3003/sendForm", data);
+
+  //   console.log(response.data);
+  // };
 
   return (
     <Container maxW="7xl" py={10} px={{ base: 5, md: 8 }}>
@@ -82,7 +116,7 @@ const From2 = () => {
                   placeholder="احمد"
                   rounded="md"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {setName(e.target.value)}}
                 />
               </FormControl>
               <FormControl id="email">
@@ -92,7 +126,7 @@ const From2 = () => {
                   placeholder="test@test.com"
                   rounded="md"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {setEmail(e.target.value)}}
                 />
               </FormControl>
               <FormControl id="phone">
@@ -102,7 +136,7 @@ const From2 = () => {
                   placeholder="050.."
                   rounded="md"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {setPhone(e.target.value)}}
                 />
               </FormControl>
             </Stack>
@@ -111,10 +145,10 @@ const From2 = () => {
               <FormLabel> التخصص </FormLabel>
               <Input
                 type="text"
-                placeholder=" تخصصك التفني "
+                placeholder=" تخصصك الجامعي "
                 rounded="md"
                 value={major}
-                onChange={(e) => setMajor(e.target.value)}
+                onChange={(e) => {setMajor(e.target.value)}}
               />
             </FormControl>
             <FormControl id="message">
@@ -124,7 +158,7 @@ const From2 = () => {
                 placeholder=""
                 rounded="md"
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => {setMessage(e.target.value)}}
               />
             </FormControl>
           </VStack>
@@ -138,7 +172,9 @@ const From2 = () => {
               rounded="md"
               w={{ base: "100%", md: "max-content" }}
               type='submit'
-              onClick={sendEmail}
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
 
             >
               ارسال{" "}

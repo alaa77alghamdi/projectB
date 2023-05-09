@@ -6,7 +6,8 @@ import imag1 from "../../assets/2.jpg";
 export default function Card6() {
   return (
     <Flex
-      bg="#edf3f8"
+    bg="#f2f3f5"
+
       _dark={{ bg: "#3e3e3e" }}
       p={50}
       paddingRight={{ lg: "516px" }}

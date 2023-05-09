@@ -17,9 +17,11 @@ function Routes() {
       <Route path="/form2" element={<Form2 />}></Route>
       <Route path="/card1" element={<Card1 />}></Route>
 
-      {/* <Route path='learningFom' element={<FormLearing/>}></Route>
-      <Route path='confirmBooking' element={<ConfirmPage/>}></Route>
-      <Route path='confirmEducation' element={<ConfirmLearning/>}></Route> */}
+      
+
+
+
+      
     </Routes_>
   );
 }

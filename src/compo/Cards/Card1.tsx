@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Flex, Heading, Image, Stack, Text, chakra } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, Flex, Image, Stack, Text, chakra } from "@chakra-ui/react";
 import imag1 from "../../assets/4.jpg"
+
 export default function Card1(){
   return (
     <>
@@ -15,13 +15,16 @@ export default function Card1(){
             
              
             >
+<br></br>
+
+
               خدماتنا{" "}
              
             </Text>
             </Stack>
     
     <Flex
-      bg="#edf3f8"
+      bg="#f2f3f5"
       _dark={{ bg: "#3e3e3e" }}
       p={50}
       paddingLeft={{ lg: '516px' }}

@@ -1,37 +1,30 @@
 import React from "react";
 import { Box, Flex, Image, Text, chakra } from "@chakra-ui/react";
 
-import imag1 from "../../assets/5.jpg"
+import imag1 from "../../assets/5.jpg";
 
-export default function Card5(){
+export default function Card5() {
   return (
     <Flex
-      bg="#edf3f8"
+      bg="#f2f3f5"
       _dark={{ bg: "#3e3e3e" }}
       p={50}
-      paddingLeft={{ lg: '516px' }}
-
+      paddingLeft={{ lg: "516px" }}
       w="full"
       alignItems="center"
       justifyContent="center"
     >
       <Box
- w= {{ lg: "30vw" }} 
- h={{ lg: "20rem" }} 
-         bg="white"
+        w={{ lg: "30vw" }}
+        h={{ lg: "20rem" }}
+        bg="white"
         _dark={{ bg: "gray.800" }}
         shadow="lg"
         rounded="lg"
         overflow="hidden"
         mx="auto"
       >
-        <Image
-          w="full"
-          h={56}
-          fit="cover"
-          src={imag1}
-                    alt="avatar"
-        />
+        <Image w="full" h={56} fit="cover" src={imag1} alt="avatar" />
 
         <Box py={5} textAlign="center">
           <Text
@@ -41,13 +34,10 @@ export default function Card5(){
             _dark={{ color: "white" }}
             fontWeight="bold"
           >
-استشارات
-تقنية
+            صناعة محتوى اعلاني
           </Text>
-        
         </Box>
       </Box>
     </Flex>
   );
-};
-
+}

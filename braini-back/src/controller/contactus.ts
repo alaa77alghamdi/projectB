@@ -5,18 +5,16 @@ import dotenv from 'dotenv'
 
 const prisma = new PrismaClient()
 
-export const sendForm1 = async(req: Request, res: Response)=>{
+export const contactUs = async(req: Request, res: Response)=>{
     try {
-        const {name, email, phone, service, projectName,Information} = req.body
+        const {name, email, phone, message} = req.body
 
-        const forms = await prisma.projects.create({
+        const forms = await prisma.contactUs.create({
             data:{
                 name: name, 
                 email: email, 
                 phone: phone, 
-                service: service, 
-                projectName: projectName,
-                Information:Information
+                message: message
             },          
         });
 
@@ -33,7 +31,7 @@ export const sendForm1 = async(req: Request, res: Response)=>{
             from: process.env.EMAIL_FROM,
             to: email,
             subject: 'Form submission confirmation',
-            text: `Dear ${name},\n\nThank you for submitting the form:  "${projectName}". \n\n We have received your submission and will get back to you as soon as possible.\n\nSincerely,\nAlaa.`,
+            text: `Dear ${name},\n\nThank you for submitting the form:  "${message}". \n\n We have received your submission and will get back to you as soon as possible.\n\nSincerely,\nAlaa.`,
         };
 
         confirmationTransporter.sendMail(confirmationMailOptions, (error, info) => {
@@ -58,7 +56,7 @@ export const sendForm1 = async(req: Request, res: Response)=>{
             from: "Database",
             to: process.env.EMAIL_FROM,
             subject: `New form submission from ${name}`,
-            text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nservice: ${service}\nprojectName: ${projectName}\nInformation${ Information}`,
+            text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
         };
 
         messageTransporter.sendMail(messageMailOptions, (error, info) => {
@@ -80,8 +78,8 @@ export const sendForm1 = async(req: Request, res: Response)=>{
 
 
 
-export const deleteAll1 = async(req:Request, res: Response)=>{
-    const user = await prisma.projects.deleteMany({
+export const deleteAll = async(req:Request, res: Response)=>{
+    const user = await prisma.contactUs.deleteMany({
         
     });
     res.json({Message: "All user deleted"})

@@ -11,27 +11,39 @@ import {
   useColorModeValue,
   VStack,
   Flex,
-  Text,
-  Icon,
-  Divider,
+  Text
 } from "@chakra-ui/react";
 // Here we have used react-icons package for the icons
-import { GoLocation } from "react-icons/go";
-import { BsPhone } from "react-icons/bs";
-import { HiOutlineMail } from "react-icons/hi";
-import axios from "axios";
 
-const From1 = () => {
+const Form1 = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [service, setService] = useState("");
   const [projectName, setProjectName] = useState("");
   const [Information, setInformation] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const sendEmail = async (e: any) => {
-    e.preventDefualt();
-    const data = {
+  // const sendEmail = async (e: any) => {
+  //   e.preventDefualt();
+  //   const data = {
+  //     name,
+  //     email,
+  //     phone,
+  //     service,
+  //     projectName,
+  //     Information,
+  //   };
+
+  //   const response = await axios.post("http://localhost:3003/sendForm1", data);
+
+  //   console.log(response.data);
+  // };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("Sending");
+    let data = {
       name,
       email,
       phone,
@@ -39,10 +51,25 @@ const From1 = () => {
       projectName,
       Information,
     };
-
-    const response = await axios.post("http://localhost:3003/sendForm1", data);
-
-    console.log(response.data);
+    await fetch("http://localhost:3003/sendForm1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      console.log("Response received");
+      if (res.status === 200) {
+        console.log("Response succeeded!");
+        setSubmitted(true);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setService("");
+        setInformation("");
+        setProjectName("");
+      }
+    });
   };
 
   return (
@@ -50,10 +77,10 @@ const From1 = () => {
       <Stack spacing={10}>
         <Flex align="center" justify="center" direction="column">
           <Heading fontSize="4xl" mb={2}>
-            اضف مشروعك{" "}
+            اطلب خدمه{" "}
           </Heading>
           <Text fontSize="md" textAlign="center">
-            اكتب معلومات المشروع ونوع الخدمه وسيتم التواصل معك قريبا{" "}
+            اكتب معلومات الخدمه وسيتم التواصل معك قريبا{" "}
           </Text>
         </Flex>
         <Stack
@@ -83,7 +110,9 @@ const From1 = () => {
                   placeholder="احمد"
                   rounded="md"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                 />
               </FormControl>
               <FormControl id="email">
@@ -93,7 +122,9 @@ const From1 = () => {
                   placeholder="test@test.com"
                   rounded="md"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </FormControl>
               <FormControl id="phone">
@@ -103,7 +134,9 @@ const From1 = () => {
                   placeholder="050.."
                   rounded="md"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                 />
               </FormControl>
             </Stack>
@@ -114,10 +147,12 @@ const From1 = () => {
                 placeholder=" امن سيبراني 'مثال'"
                 rounded="md"
                 value={service}
-                onChange={(e) => setService(e.target.value)}
+                onChange={(e) => {
+                  setService(e.target.value);
+                }}
               />
             </FormControl>
-            <FormControl id="subject">
+            {/* <FormControl id="subject">
               <FormLabel>اسم المشروع </FormLabel>
               <Input
                 type="text"
@@ -126,15 +161,17 @@ const From1 = () => {
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
               />
-            </FormControl>
+            </FormControl> */}
             <FormControl id="message">
-              <FormLabel>معلومات اخرى عن المشروع</FormLabel>
+              <FormLabel>معلومات اخرى عن الخدمه</FormLabel>
               <Textarea
                 size="lg"
                 placeholder=""
                 rounded="md"
                 value={Information}
-                onChange={(e) => setInformation(e.target.value)}
+                onChange={(e) => {
+                  setInformation(e.target.value);
+                }}
               />
             </FormControl>
           </VStack>
@@ -147,8 +184,9 @@ const From1 = () => {
               }}
               rounded="md"
               w={{ base: "100%", md: "max-content" }}
-            
-              onSubmit={sendEmail}
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
             >
               ارسال{" "}
             </Button>
@@ -159,4 +197,4 @@ const From1 = () => {
   );
 };
 
-export default From1;
+export default Form1;

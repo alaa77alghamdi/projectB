@@ -5,7 +5,7 @@ import imag1 from "../../assets/1.jpg"
 export default function Card2(){
   return (
     <Flex
-      bg="#edf3f8"
+      bg="#f2f3f5"
       _dark={{ bg: "#3e3e3e" }}
       p={50}
       paddingRight={{ lg: '516px' }}
@@ -40,9 +40,7 @@ export default function Card2(){
             _dark={{ color: "white" }}
             fontWeight="bold"
           >
-   معالجة
-البيانات
-وإدخالها
+ تصميم هوية
           </Text>
           <chakra.span
             fontSize="sm"
