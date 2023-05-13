@@ -8,7 +8,8 @@ import Card4 from './Cards/Card4'
 import Card5 from './Cards/Card5'
 import Card6 from './Cards/Card6'
 
-import Header from './Header'
+import Header from './Header1'
+import Header1 from './Header1'
 
 
 function Home() {
@@ -16,7 +17,7 @@ function Home() {
 
   return (
    <>
-      <Header/>
+      <Header1/>
 
       <Card1/>
       <Card2/>

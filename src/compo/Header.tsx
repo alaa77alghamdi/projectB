@@ -36,10 +36,7 @@ export default function Header() {
             >
           
 Braini
-<br></br>
 
-
-              <br></br>مختصين تقنية وتسوي
 
             
             </Text>
