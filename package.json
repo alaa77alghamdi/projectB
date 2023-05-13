@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx tsc",
-    "start": "node dist/app.js",
+    "build": "tsc && vite build",
     "preview": "vite preview"
    
   },
